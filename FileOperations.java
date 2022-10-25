@@ -11,23 +11,17 @@
  * resetLogBook method will not work, and the month and year has to be taken while attempting to reset the budget and the log 
  * */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 import java.util.StringTokenizer;
 
 public class FileOperations {
     
 	File logBookFile;
-	File passWord = new File("password.txt");
+	// File passWord = new File("password.txt");
 	Scanner input = new Scanner(System.in);
 	Registration re = new Registration();
+	String dirPath = re.getUser();
 	
 	public void updateLogBook(int budget, int expense, String date, String item, int cost) throws IOException {
 		/**
@@ -35,7 +29,7 @@ public class FileOperations {
 		 */
 		// BufferedWriter , to append the data in the "Data.txt" file
 		System.out.println(re.getUser() );
-		logBookFile = new File("logBook " + re.getUser() + " " + getMonthYearName(date) + ".txt");
+		logBookFile = new File(dirPath + File.separator+ "logBook " + re.getUser() + " " + getMonthYearName(date) + ".txt");
 		FileWriter writer = new FileWriter(logBookFile,true); 
 		BufferedWriter br = new BufferedWriter(writer);
 		if(item == "nil")
@@ -51,7 +45,7 @@ public class FileOperations {
 		 * The method prompts the user to enter new budget, if the budget is not entered
 		 * Else, it goes to the end of the file and checks and returns the budget and the expense
 		 * */
-		logBookFile = new File("logBook "+ re.getUser() + " " + getMonthYearName(date) + ".txt");
+		logBookFile = new File(dirPath + File.separator+"logBook "+ re.getUser() + " " + getMonthYearName(date) + ".txt");
 		if(!logBookFile.exists()){
 			logBookFile.createNewFile();
 		}
@@ -90,7 +84,7 @@ public class FileOperations {
 		 * 
 		 * */
 	
-		logBookFile = new File("logBook " +re.getUser() + " " +  getMonthYearName(date) + ".txt");
+		logBookFile = new File(dirPath + File.separator+"logBook " +re.getUser() + " " +  getMonthYearName(date) + ".txt");
 		FileReader read = new FileReader(logBookFile);
 		BufferedReader rd = new BufferedReader(read);
 		String temp = new String();
@@ -129,7 +123,7 @@ public class FileOperations {
 
 		String last = "";
 		String line = "";
-		logBookFile = new File("logBook " + re.getUser() + " " + getMonthYearName(date) + ".txt");
+		logBookFile = new File(dirPath + File.separator+"logBook " + re.getUser() + " " + getMonthYearName(date) + ".txt");
 		
 		FileReader read = new FileReader(logBookFile);
 		BufferedReader rd = new BufferedReader(read);
@@ -147,7 +141,7 @@ public class FileOperations {
 		rd.close();
 		
 		//Deleting the last line of the file, and add it again with the previous contents but new budget
-		RandomAccessFile f = new RandomAccessFile("logBook" + getMonthYearName(date) + ".txt", "rw");
+		RandomAccessFile f = new RandomAccessFile(dirPath + File.separator+"logBook "  + re.getUser() + " " +  getMonthYearName(date) + ".txt", "rw");
 		long length = f.length() - 1;
 		byte b;
 		do {  
@@ -168,7 +162,7 @@ public class FileOperations {
 	
 	public ArrayList<Log> getMonthLog(String date) throws IOException {
 		
-		logBookFile = new File("logBook " +re.getUser() + " " +  getMonthYearName(date) + ".txt");
+		logBookFile = new File(dirPath + File.separator+"logBook " +re.getUser() + " " +  getMonthYearName(date) + ".txt");
 		FileReader read = new FileReader(logBookFile);
 		BufferedReader rd = new BufferedReader(read);
 		String temp = new String();
@@ -202,7 +196,7 @@ public class FileOperations {
 		 * Date is given by the manager
 		 * */
 		
-		logBookFile = new File("logBook " +re.getUser() + " " +  getMonthYearName(date) + ".txt");
+		logBookFile = new File(dirPath + File.separator+"logBook " +re.getUser() + " " +  getMonthYearName(date) + ".txt");
 		boolean bool = true;
 		
 		if(logBookFile.exists())
@@ -236,49 +230,49 @@ public class FileOperations {
 		return name;
 	}
 
-	public String getPassWord() throws IOException {
-		/**
-		 * Method is used by the PassWord class
-		 * Reads the password from the password.txt and returns it to the PassWord class
-		 * */
-		//In case the password.txt is empty, the it is assumed that the user is using the product for the first time and he is prompted to check the password.txt
-		if(passWord.length() == 0)
-			System.out.print("\nPlease check the password.txt file for errors!");
-		FileReader read = new FileReader(this.passWord);
-		BufferedReader rd = new BufferedReader(read);
-		// read the password from the file password.txt and return the password
-		String pass = rd.readLine().toString().trim();
-		rd.close();
-		return pass;
-	}
+	// public String getPassWord() throws IOException {
+	// 	/**
+	// 	 * Method is used by the PassWord class
+	// 	 * Reads the password from the password.txt and returns it to the PassWord class
+	// 	 * */
+	// 	//In case the password.txt is empty, the it is assumed that the user is using the product for the first time and he is prompted to check the password.txt
+	// 	if(passWord.length() == 0)
+	// 		System.out.print("\nPlease check the password.txt file for errors!");
+	// 	FileReader read = new FileReader(this.passWord);
+	// 	BufferedReader rd = new BufferedReader(read);
+	// 	// read the password from the file password.txt and return the password
+	// 	String pass = rd.readLine().toString().trim();
+	// 	rd.close();
+	// 	return pass;
+	// }
 
-	public void setPassWord(String passWord) throws IOException {
-		/**
-		 * Method is used by the PassWord class
-		 * deletes the old password from the password.txt and writes the new password in it
-		 * */
-		RandomAccessFile f = new RandomAccessFile("password.txt", "rw");
-		long length = f.length() - 1;
-		byte b;
-		do {  
-		  // Start reading the bytes from the 2nd last byte, and read till the next linefeed character occours. Once this occours, truncate the file	
-		  length -= 1;
-		  f.seek(length);
-		  b = f.readByte();
-		} while(b != 10 && length > 0);
-		if (length == 0) { 
-		f.setLength(length);
-		} else {
-		f.setLength(length + 1);
-		}
-		f.close();
-		//writing the new password in the password.txt using the buffered writer
-		FileWriter writer = new FileWriter(this.passWord,true); 
-		BufferedWriter br = new BufferedWriter(writer);
-		br.write(passWord);
-		br.close();
-		System.out.print("\nYour password has been changed!");
-	}
+	// public void setPassWord(String passWord) throws IOException {
+	// 	/**
+	// 	 * Method is used by the PassWord class
+	// 	 * deletes the old password from the password.txt and writes the new password in it
+	// 	 * */
+	// 	RandomAccessFile f = new RandomAccessFile("password.txt", "rw");
+	// 	long length = f.length() - 1;
+	// 	byte b;
+	// 	do {  
+	// 	  // Start reading the bytes from the 2nd last byte, and read till the next linefeed character occours. Once this occours, truncate the file	
+	// 	  length -= 1;
+	// 	  f.seek(length);
+	// 	  b = f.readByte();
+	// 	} while(b != 10 && length > 0);
+	// 	if (length == 0) { 
+	// 	f.setLength(length);
+	// 	} else {
+	// 	f.setLength(length + 1);
+	// 	}
+	// 	f.close();
+	// 	//writing the new password in the password.txt using the buffered writer
+	// 	FileWriter writer = new FileWriter(this.passWord,true); 
+	// 	BufferedWriter br = new BufferedWriter(writer);
+	// 	br.write(passWord);
+	// 	br.close();
+	// 	System.out.print("\nYour password has been changed!");
+	// }
 
 	
 

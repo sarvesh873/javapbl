@@ -1,8 +1,7 @@
 /* * @param month,year - to open the file holding the data of the present month and year
  * The class opens the file and does all the file manipulation work*/ 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Manager {
     
@@ -12,7 +11,8 @@ public class Manager {
 	// FileOperations class defines all methods relating to file operations like reading and writing
 	FileOperations file = new FileOperations();
 	// Password is checked before resetting the budget, PassWord Class object defines the methods needed for this 
-	PassWord pass = new PassWord();
+	// PassWord pass = new PassWord();
+	Registration reg = new Registration();
 	
 	public void makeDailyLog() throws IOException
 	{
@@ -115,7 +115,7 @@ public class Manager {
 			 * Method to get the budget from the user, and re write the "BudgetFile.txt"
 			 * Warns the user that setting budget would set the expense to zero
 			 */
-			if(pass.checkPassWord()){
+			if(reg.checkPassWord()){
 			System.out.print("\nResetting the budget may create error in the calculations\nDo you still want to continue? (y/n): ");
 			char ch = input.next().charAt(0);
 			if(ch == 'y' || ch == 'Y'){

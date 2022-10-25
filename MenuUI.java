@@ -38,7 +38,6 @@ public class MenuUI {
 		Scanner input = new Scanner(System.in);
 		int ch;
 		char userChoice = 'N';
-		// PassWord pass = new PassWord();
 		Registration reg = new Registration();
 		// reg.register();
 		int choice;
@@ -65,7 +64,7 @@ public class MenuUI {
         }
 		
 		
-		if(reg.checkPassWord() == true	){
+		if(reg.checkStatus() == true	){
 			do{
 				
 				System.out.print("\n Options available are: \n1. Make an Entry \n2. Get the expenses done for a particular date \n3. Get the log for a particular month \n4. Check Expense done for a particular month  \n5. Set budget \n6. Delete a particular month's log \n7. Change Password \n Enter your choice: ");
@@ -99,7 +98,7 @@ public class MenuUI {
 					break;
 				case 7:
 					//Change password
-					// pass.changePassWord();
+					reg.changePassWord();
 				}
 				System.out.print("\nAnything Else?(y/n): ");
 				userChoice  = input.next().charAt(0);
