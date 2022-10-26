@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.*;
- 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Registration {
     
     private static String userId ; 
@@ -15,8 +16,10 @@ public class Registration {
         String Uname=sc.nextLine();
         System.out.println(Uname);
          
-        System.out.println("Enter Password: ");
-        String Pass=sc.nextLine();
+        // System.out.println("Enter Password: ");
+        // String Pass=sc.nextLine();
+        System.out.print("\n Enter password according to the following contratints: \n1. It contains at least 8 characters and at most 20 characters. \n2. It contains at least one digit. \n3. It contains at least one upper case alphabet. \n4.It contains at least one lower case alphabet. \n5. It contains at least one special character which includes !@#$%&*()-+=^.\n6. It doesn’t contain any white space.\n :");
+        String Pass= inputPass();
         System.out.println(Pass);
          
         System.out.println("Confirm Password: ");
@@ -29,6 +32,8 @@ public class Registration {
         if(!f.exists()){
 			f.createNewFile();
 		}
+        String cmd[] = {"attrib","+h","Registration.txt"};
+        Runtime.getRuntime().exec(cmd);
          
  
         String x= Uname;
@@ -82,6 +87,8 @@ public class Registration {
                         }else{  
                             System.out.println("Error Found!");  
                         }  
+                        String cmd1[] = {"attrib","+h",Uname};
+                        Runtime.getRuntime().exec(cmd1);
                     }
                     catch (IOException e) {
                         System.out.println("exception occoured" + e);
@@ -201,9 +208,6 @@ public class Registration {
         return userId;
     }
     public boolean checkPassWord() throws IOException{
-		/**
-		 * public method used by the MenuUI to check the password with the one in the file
-		 * */
 		System.out.print("\nEnter the password: ");
 		String pass = input.next();
 		checkUntilPasswordIsCorrect(pass);
@@ -237,8 +241,9 @@ public class Registration {
 		String oldPass = input.next();
 		
 		if(checkUntilPasswordIsCorrect(oldPass)){
-		System.out.print("\nEnter the new Password: ");
-		String newPass = input.next();
+		// System.out.print("\nEnter the new Password: ");
+        System.out.print("\n Enter New password according to the following contratints: \n1. It contains at least 8 characters and at most 20 characters. \n2. It contains at least one digit. \n3. It contains at least one upper case alphabet. \n4.It contains at least one lower case alphabet. \n5. It contains at least one special character which includes !@#$%&*()-+=^.\n6. It doesn’t contain any white space.\n :");
+		String newPass = inputPass();
 		this.setPassWord(oldPass,newPass);
 		System.out.print("\nThe password has been changed successfully!");
 		}
@@ -303,5 +308,26 @@ public class Registration {
             }
             System.out.print("\nYour password has been changed!");
     }
+        public static boolean validatePass(String pass)
+            {
+                String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,20}$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern .matcher(pass);
+                return matcher.matches();
+            }
+		public String inputPass(){
+			Scanner sc = new Scanner(System.in);
+			String passin;
+			do{
+				System.out.println("Please Enter Password according the constratints provided ");
+                passin=sc.nextLine();
+			}
+			while(!validatePass(passin));
+			// System.out.print(date);
+			return passin;
+		}
 }
     

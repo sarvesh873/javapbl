@@ -2,6 +2,8 @@
  * The class opens the file and does all the file manipulation work*/ 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Manager {
     
@@ -23,13 +25,19 @@ public class Manager {
 		 */
 		Log log = new Log();
 		System.out.print("\nEnter the Date (dd/mm/yyyy): ");
-		log.setDate(input.next());
-		System.out.print("\nEnter the item: ");
-		input.nextLine();
-		log.setItem(input.nextLine());
-		System.out.print("\nEnter Cost: Rs");
-		log.setCost(input.nextInt());
-		enterLog(log);
+		String date = input.next();
+		if(validateJavaDate(date)){
+			log.setDate(date);
+			System.out.print("\nEnter the item: ");
+			input.nextLine();
+			log.setItem(input.nextLine());
+			System.out.print("\nEnter Cost: Rs");
+			log.setCost(input.nextInt());
+			enterLog(log);
+		}
+		else {
+			System.out.print("\nEnter the Date in specified format (dd/mm/yyyy): ");
+			this.makeDailyLog();}
 	}
 	
 
@@ -68,8 +76,10 @@ public class Manager {
 			/**
 			 * Method to display the expense done till date.
 			 */
-			System.out.print("Enter month and year (MM/YYYY)");
-			String date = input.next();
+			// System.out.print("Enter month and year (MM/YYYY)");
+			// String date = input.next();
+			String date =inputMonth();
+			if(date == null)System.out.println("fuckedd");
 			//setting date in the dd/mm/yyyy fromat so that getBudgetData can be exploited for the purpose
 			date = "00/".concat(date);
 			String budgetdata = file.getBudgetData(date);
@@ -88,8 +98,9 @@ public class Manager {
 			 * Method to get the date on which the expense is to be shown to the user
 			 * Calls the getDetails method, to get the details from the Log Book
 			 */
-			System.out.print("\nEnter the Date (dd/mm/yyyy): ");
-			String date = input.next();
+			// System.out.print("\nEnter the Date (dd/mm/yyyy): ");
+			// String date = input.next();
+			String date =inputMonth();
 			getDetails(date);
 		}
 		private void getDetails(String date) throws IOException {
@@ -120,8 +131,9 @@ public class Manager {
 			char ch = input.next().charAt(0);
 			if(ch == 'y' || ch == 'Y'){
 				// if the condition is true, the budget is taken from the user, and updated in the "Budget.txt"
-				System.out.print("\nEnter the month and the year(MM/YYYY)");
-				String date = input.next();
+				// System.out.print("\nEnter the month and the year(MM/YYYY)");
+				// String date = input.next();
+				String date =inputMonth();
 				System.out.print("\nEnter the budget: Rs.");
 				int budget = input.nextInt();
 				file.resetBudget(date,budget);
@@ -138,8 +150,8 @@ public class Manager {
 			/**
 			 * Method is used by the MenuUI
 			 * Gives the entries made for a whole month to the user*/
-			System.out.print("\nEnter the month and the year (MM/YYYY): ");
-			String date = input.next();
+			// System.out.print("\nEnter the month and the year (MM/YYYY): ");
+			String date = inputMonth();
 			ArrayList<Log> list1 = file.getMonthLog(date);
 			int n = list1.size();
 			if(n == 0)
@@ -164,9 +176,38 @@ public class Manager {
 			System.out.print("Are you sure that you want to delete a whole month's log forever? (Y/N): ");
 			char choice = input.next().charAt(0);
 			if(choice == 'y' || choice == 'Y'){
-				System.out.print("\nEnter the month and the year (MM/YYYY): ");
-				String date = input.next();
+				// System.out.print("\nEnter the month and the year (MM/YYYY): ");
+				// String date = input.next();
+				String date =inputMonth();
 				file.deleteLog(date);
 			}
 		}
+
+		public static boolean validateJavaDate(String strDate)
+		{
+			String regex = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher((CharSequence)strDate);
+			// System.out.print("\nEnter the Date in specified format (dd/mm/yyyy): ");
+			return matcher.matches();
+		}
+		public static boolean validateJavaMonth(String strDate)
+		{
+			String regex ="^(1[0-2]|0[1-9])/[0-9]{4}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher((CharSequence)strDate);
+			return matcher.matches();
+		}
+		public String inputMonth(){
+			Scanner input = new Scanner(System.in);
+			String date;
+			do{
+				System.out.print("Enter month and year (MM/YYYY)");
+				date = input.next();
+			}
+			while(!validateJavaMonth(date));
+			// System.out.print(date);
+			return date;
+		}
+
 }
