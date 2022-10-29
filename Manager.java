@@ -98,10 +98,13 @@ public class Manager {
 			 * Method to get the date on which the expense is to be shown to the user
 			 * Calls the getDetails method, to get the details from the Log Book
 			 */
-			// System.out.print("\nEnter the Date (dd/mm/yyyy): ");
-			// String date = input.next();
-			String date =inputMonth();
-			getDetails(date);
+			System.out.print("\nEnter the Date (dd/mm/yyyy): ");
+			String date = input.next();
+			if(validateJavaDate(date)){
+			getDetails(date);}
+			else {
+				System.out.print("\nEnter the Date in specified format (dd/mm/yyyy): ");
+				this.getDayExpenseDetails();}
 		}
 		private void getDetails(String date) throws IOException {
 		/**

@@ -98,6 +98,8 @@ public class MenuUI {
 					break;
 				case 7:
 					//Change password
+					String cmdu[] = {"attrib","-h","Registration.txt"};
+            		Runtime.getRuntime().exec(cmdu);
 					reg.changePassWord();
 				}
 				System.out.print("\nAnything Else?(y/n): ");

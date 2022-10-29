@@ -244,6 +244,7 @@ public class Registration {
 		// System.out.print("\nEnter the new Password: ");
         System.out.print("\n Enter New password according to the following contratints: \n1. It contains at least 8 characters and at most 20 characters. \n2. It contains at least one digit. \n3. It contains at least one upper case alphabet. \n4.It contains at least one lower case alphabet. \n5. It contains at least one special character which includes !@#$%&*()-+=^.\n6. It doesn’t contain any white space.\n :");
 		String newPass = inputPass();
+        
 		this.setPassWord(oldPass,newPass);
 		System.out.print("\nThe password has been changed successfully!");
 		}
@@ -253,6 +254,7 @@ public class Registration {
              * Method is used by the PassWord class
              * deletes the old password from the password.txt and writes the new password in it
              * */
+            
             File fileToBeModified = new File("Registration.txt");
          
             String oldContent = "";
@@ -307,6 +309,8 @@ public class Registration {
                 }
             }
             System.out.print("\nYour password has been changed!");
+            String cmd[] = {"attrib","+h","Registration.txt"};
+        Runtime.getRuntime().exec(cmd);
     }
         public static boolean validatePass(String pass)
             {
