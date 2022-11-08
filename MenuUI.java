@@ -17,12 +17,12 @@
  * The Class CostOperation has methods that do the cost related operations, it communicates only with Class Manager
  * The Class FileOperations has methods which does file related operations, it Communicates only with Class Manager
  * The Class Manager does all the managing part and communicates with the MenuUI Class and all the other classes.
- * The Class Password manages functions that are employed to check the current password by MenuUI, and set the new password by MenuUI, it communicates with MenuUI, and FileOperations to read and write from .txt file
+ * The Class Registration manages functions that are employed to check the current User validation by MenuUI, and set the new password by MenuUI, it communicates with MenuUI, and FileOperations to read and write from .txt file
  * The Class MenuUI is the main class, which tells the program which operation to perform and communicates with the user and the Class Manager
  */
 
 /**
- * To perform any operation, the text file "password.txt" should be present at the start, or else, error will be thrown
+ * To perform any operation, the user must be registered in the system.
  */
 
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class MenuUI {
 		Scanner input = new Scanner(System.in);
 		int ch;
 		char userChoice = 'N';
-		Registration reg = new Registratn();
+		Registration reg = new Registration();
 		// reg.register();
 		int choice;
         System.out.println("1. Registration. ");
@@ -61,6 +61,7 @@ public class MenuUI {
         else
         {
             System.out.println("Choose Proper Option");
+			System.exit(0);
         }
 		
 		
