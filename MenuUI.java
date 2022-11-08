@@ -38,7 +38,7 @@ public class MenuUI {
 		Scanner input = new Scanner(System.in);
 		int ch;
 		char userChoice = 'N';
-		Registration reg = new Registration();
+		Registration reg = new Registratn();
 		// reg.register();
 		int choice;
         System.out.println("1. Registration. ");
