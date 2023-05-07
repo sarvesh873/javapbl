@@ -30,6 +30,7 @@ public class ViewAllContacts extends JFrame {
         btnViewAll = new   JButton();
         jScrollPane1 = new   JScrollPane();
         tblContacts = new   JTable();
+        JButton Back=new JButton();
 
         setDefaultCloseOperation(  WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,10 +40,18 @@ public class ViewAllContacts extends JFrame {
 
         btnViewAll.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnViewAll.setText("View All");
-        btnViewAll.setBounds(200, 80, 120, 40);
+        btnViewAll.setBounds(100, 80, 120, 40);
         btnViewAll.addActionListener(new  ActionListener() {
             public void actionPerformed( ActionEvent evt) {
                 btnViewAllActionPerformed(evt);
+            }
+        });
+        Back.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Back.setText("Main Page");
+       Back.setBounds(250, 80, 140, 40);
+        Back.addActionListener(new  ActionListener() {
+            public void actionPerformed( ActionEvent evt) {
+                BackActionPerformed(evt);
             }
         });
 
@@ -67,6 +76,7 @@ public class ViewAllContacts extends JFrame {
         jScrollPane1.setBounds(20, 140, 480, 220);
         jPanel1.setLayout(null);
         jPanel1.add(jLabel1);
+        jPanel1.add(Back);
         jPanel1.add(btnViewAll);
         jPanel1.add(jScrollPane1);
         jPanel1.setPreferredSize(new Dimension(550, 400));
@@ -100,40 +110,19 @@ public class ViewAllContacts extends JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnViewAllActionPerformed
-
+    
+    
+    private void BackActionPerformed( ActionEvent evt) {
+    	PhoneDirClient phn=new PhoneDirClient();
+        phn.setVisible(true);
+        setVisible(false);
+    	
+        }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (  UIManager.LookAndFeelInfo info :   UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                      UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewAllContacts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewAllContacts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewAllContacts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (  UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewAllContacts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewAllContacts().setVisible(true);
-            }
-        });
+        new ViewAllContacts().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
