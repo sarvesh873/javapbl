@@ -52,13 +52,14 @@ public class RMIServer extends UnicastRemoteObject implements RMIInterface {
         return val;
     }
 
-    public ArrayList searchContact(String phoneNo) throws RemoteException {
+    public ArrayList searchContact(String contactName ) throws RemoteException {
         ArrayList array = new ArrayList();
         try {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(DB_URL, username, password);
             stmt = conn.createStatement();
-            String sql = "SELECT *FROM contact WHERE phoneno ='" + phoneNo + "'";
+            // String sql = "SELECT *FROM contact WHERE phoneno ='" + phoneNo + "'";
+            String sql = "SELECT *FROM contact WHERE contactname ='" + contactName + "'";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 for (int i = 0; i < 2; i++) {
@@ -97,16 +98,18 @@ public class RMIServer extends UnicastRemoteObject implements RMIInterface {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(DB_URL, username, password);
             stmt = conn.createStatement();
-            String sql = "SELECT *FROM contact WHERE phoneno = '" + phoneNo + "'";
+            String sql = "SELECT *FROM contact WHERE contactname = '" + contactName + "'";
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                CPHONE = rs.getString("phoneno");
+                CPHONE = rs.getString("contactName");
             }
-            if (!phoneNo.intern().equals(CPHONE)) {
+            // System.out.println(CPHONE);
+            if (!contactName.intern().equals(CPHONE)) {
                 val = "0";
-            } else if (phoneNo.intern().equals(CPHONE)) {
-                prst = conn.prepareStatement("UPDATE contact SET contactname = '" + contactName + "' WHERE phoneno = '" + phoneNo + "'");
+            } else if (contactName.intern().equals(CPHONE)) {
+                prst = conn.prepareStatement("UPDATE contact SET phoneno = '" +  phoneNo + "' WHERE contactname = '" +  contactName+ "'");
+                // System.out.println(prst);
                 prst.executeUpdate();
                 val = "1";
             }
@@ -117,25 +120,25 @@ public class RMIServer extends UnicastRemoteObject implements RMIInterface {
         return val;
     }
 
-    public String deleteContact(String phoneNo) throws RemoteException {
+    public String deleteContact(String contactName) throws RemoteException {
         String val = "", CPHONE = "";
         try {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(DB_URL, username, password);
             stmt = conn.createStatement();
-            String sql = "SELECT *FROM contact WHERE phoneno = '" + phoneNo + "'";
+            String sql = "SELECT *FROM contact WHERE contactname = '" + contactName + "'";
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                CPHONE = rs.getString("phoneno");
+                CPHONE = rs.getString("contactName");
             }
-            if (!phoneNo.intern().equals(CPHONE)) {
+            if (!contactName.intern().equals(CPHONE)) {
                 val = "0";
             }
 
-            else if (phoneNo.intern().equals(CPHONE)) {
+            else if (contactName.intern().equals(CPHONE)) {
                 stmt = conn.createStatement();
-                String sql2 = "DELETE FROM contact WHERE phoneno = '"+phoneNo+"'";
+                String sql2 = "DELETE FROM contact WHERE contactname = '"+contactName+"'";
                 stmt.executeUpdate(sql2);
                 val = "1";
             }

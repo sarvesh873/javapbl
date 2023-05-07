@@ -1,12 +1,12 @@
 import java.rmi.Naming;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.*;
 
-/**
- *
- * @author Law
- */
-public class PhoneDirClient extends javax.swing.JFrame {
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.Dimension;
+public class PhoneDirClient extends   JFrame {
 
     /**
      * Creates new form PhoneDirClient
@@ -26,138 +26,111 @@ public class PhoneDirClient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtPhoneNo = new javax.swing.JTextField();
-        btnRegister = new javax.swing.JButton();
-        txtSearchPhone = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        btnSearch = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        jPanel1 = new JPanel();
+        jLabel1 = new JLabel();
+        jLabel2 = new JLabel();
+        jLabel3 = new JLabel();
+        txtName = new JTextField();
+        txtPhoneNo = new JTextField();
+        btnRegister = new JButton();
+        txtSearchPhone = new JTextField();
+        jLabel4 = new JLabel();
+        btnSearch = new JButton();
+        btnUpdate = new JButton();
+        btnDelete = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 0, 48));
         jLabel1.setText("Phone Directory");
+        jLabel1.setBounds(100, 20, 400, 50);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Contact Name:");
+        jLabel2.setBounds(50, 100, 150, 25);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel3.setText("Phone Number:");
+        jLabel3.setBounds(50, 150, 150, 25);
 
-        btnRegister.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtName.setBounds(200, 100, 200, 25);
+        txtPhoneNo.setBounds(200, 150, 200, 25);
+
+        btnRegister.setFont(new java.awt.Font("Tahoma", 0, 18));
         btnRegister.setText("Register");
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRegister.setBounds(250, 200, 150, 30);
+        btnRegister.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Enter Phone to Serach:");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18));
+        jLabel4.setText("Enter Phone to Search:");
+        jLabel4.setBounds(50, 250, 200, 25);
 
-        btnSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSearchPhone.setBounds(250, 250, 150, 25);
+
+        btnSearch.setFont(new java.awt.Font("Tahoma", 0, 18));
         btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSearch.setBounds(420, 250, 100, 30);
+        btnSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 18));
         btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnUpdate.setBounds(200, 300, 100, 30);
+        btnUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 18));
         btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDelete.setBounds(350, 300, 100, 30);
+        btnDelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(135, 135, 135))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSearchPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                            .addComponent(txtName)
-                            .addComponent(txtPhoneNo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtSearchPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
-        );
+        // Set the layout of the JPanel to null
+        jPanel1.setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        // Add the components to the panel
+        jPanel1.add(jLabel1);
+        jPanel1.add(jLabel2);
+        jPanel1.add(jLabel3);
+        jPanel1.add(txtName);
+        jPanel1.add(txtPhoneNo);
+        jPanel1.add(btnRegister);
+        jPanel1.add(jLabel4);
+        jPanel1.add(txtSearchPhone);
+        jPanel1.add(btnSearch);
+        jPanel1.add(btnUpdate);
+        jPanel1.add(btnDelete);
+
+        // Set the size of the JPanel
+        jPanel1.setPreferredSize(new Dimension(600, 400));
+
+        // Set the layout of the content pane to BorderLayout
+        getContentPane().setLayout(new BorderLayout());
+
+        // Add the JPanel to the center of the content pane
+        getContentPane().add(jPanel1, BorderLayout.CENTER);
+
+        // Pack the frame and make it visible
+        pack();
+        setVisible(true);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnRegisterActionPerformed( ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         try {
             String contactName = txtName.getText();
@@ -177,18 +150,19 @@ public class PhoneDirClient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    private void btnSearchActionPerformed( ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         ArrayList array = new ArrayList();
         try {
-            String phoneNo = txtSearchPhone.getText();
+            // String phoneNo = txtSearchPhone.getText();
+            String contactName = txtSearchPhone.getText();
             RMIInterface ri = (RMIInterface) Naming.lookup("rmi://localhost:8081/x");
             for (int i = 0; i < 2; i++) {
-                array = ri.searchContact(phoneNo);
+                array = ri.searchContact(contactName);
             }
             if (!array.isEmpty()) {
-                txtName.setText(array.get(0).toString());
-                txtPhoneNo.setText(array.get(1).toString());
+                txtName.setText(array.get(1).toString());
+                txtPhoneNo.setText(array.get(0).toString());
             } else if (array.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No record found.", "Phone Dire: No Record Found", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -197,7 +171,7 @@ public class PhoneDirClient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateActionPerformed( ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             String contactName = txtName.getText();
             String phoneNo = txtPhoneNo.getText();
@@ -217,13 +191,13 @@ public class PhoneDirClient extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteActionPerformed( ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         try {
-            String phoneNo = txtPhoneNo.getText();
+            String contactName = txtName.getText();
             
             RMIInterface ri = (RMIInterface) Naming.lookup("rmi://localhost:8081/x");
-            String result = ri.deleteContact(phoneNo);
+            String result = ri.deleteContact(contactName);
 
             if (result.equals("1")) {
                 JOptionPane.showMessageDialog(this, "Contact Deleted Successfully!", "Tele Dir: Contact Deleted.", JOptionPane.INFORMATION_MESSAGE);
@@ -248,9 +222,9 @@ public class PhoneDirClient extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (  UIManager.LookAndFeelInfo info :   UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                      UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -260,7 +234,7 @@ public class PhoneDirClient extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PhoneDirClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(PhoneDirClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (  UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PhoneDirClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -274,17 +248,17 @@ public class PhoneDirClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPhoneNo;
-    private javax.swing.JTextField txtSearchPhone;
+    private   JButton btnDelete;
+    private   JButton btnRegister;
+    private   JButton btnSearch;
+    private   JButton btnUpdate;
+    private   JLabel jLabel1;
+    private   JLabel jLabel2;
+    private   JLabel jLabel3;
+    private   JLabel jLabel4;
+    private   JPanel jPanel1;
+    private   JTextField txtName;
+    private   JTextField txtPhoneNo;
+    private   JTextField txtSearchPhone;
     // End of variables declaration//GEN-END:variables
 }
